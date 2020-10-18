@@ -2,7 +2,7 @@ import { Box, Button, Card, CardContent, Step, StepLabel, Stepper, Grid, Circula
 import { Field, Formik, Form, FormikConfig, FormikValues } from "formik"
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
-import { mixed, number, object } from 'yup';
+import { mixed, number, object, string } from 'yup';
 
 export default function Home() {
   return (
@@ -25,7 +25,13 @@ export default function Home() {
             })
           }}
         >
-          <FormikStep label="Personal Data">
+          <FormikStep
+            label="Personal Data"
+            validationSchema={object({
+              firstName: string().required().min(2).max(100),
+              lastName: string().required().min(2).max(100),
+            })}
+          >
             <Box paddingBottom={2}>
               <Field fullWidth name="firstName" component={TextField} label="First Name" />
             </Box>
@@ -108,15 +114,18 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
           <Grid container spacing={2}>
             {step > 0 && (
               <Grid item>
-                <Button disabled={isSubmitting} variant="contained" color="primary" onClick={() => setStep(s => s - 1)}>Back</Button>
+                <Button
+                  disabled={isSubmitting}
+                  onClick={() => {
+                    setStep(s => s - 1);
+                    setCompleted(false);
+                  }}>Back</Button>
               </Grid>)
             }
             <Grid item>
               <Button
                 startIcon={isSubmitting && <CircularProgress size="1rem" />}
                 disabled={isSubmitting}
-                variant="contained"
-                color="primary"
                 type="submit"
               >
                 {step === stepArray.length - 1 ? "Submit" : "Next"}
