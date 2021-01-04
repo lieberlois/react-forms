@@ -7,7 +7,7 @@ import { InvestmentDetails } from '../InvestmentDetails';
 
 
 
-export function FormDemoFormik() {
+export function FormikComponent() {
   const initialValues: InvestmentDetails = {
     fullName: '',
     initialInvestment: 0,
