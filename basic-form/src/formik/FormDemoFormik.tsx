@@ -2,12 +2,12 @@ import { Card, CardContent, TextField, Typography, MenuItem, FormGroup, Box, But
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
 import { array, boolean, mixed, number, object, string } from 'yup';
-import { CustomCheckbox } from './CostumCheckbox';
-import { InvestmentDetails } from './InvestmentDetails';
+import { CustomCheckboxFormik } from './CostumCheckboxFormik';
+import { InvestmentDetails } from '../InvestmentDetails';
 
 
 
-export function FormDemo() {
+export function FormDemoFormik() {
   const initialValues: InvestmentDetails = {
     fullName: '',
     initialInvestment: 0,
@@ -67,9 +67,9 @@ export function FormDemo() {
 
               <FormGroup>
                 <Typography variant="h5">Select the risks you want to take</Typography>
-                <CustomCheckbox name="investmentRisk" label="High - Risky" value="High" />
-                <CustomCheckbox name="investmentRisk" label="Medium - Balanced" value="Medium" />
-                <CustomCheckbox name="investmentRisk" label="Low - Safe" value="Low" />
+                <CustomCheckboxFormik name="investmentRisk" label="High - Risky" value="High" />
+                <CustomCheckboxFormik name="investmentRisk" label="Medium - Balanced" value="Medium" />
+                <CustomCheckboxFormik name="investmentRisk" label="Low - Safe" value="Low" />
               </FormGroup>
               <ErrorMessage name="investmentRisk">{msg => <Typography color="error">{msg}</Typography>}</ErrorMessage>
 
@@ -98,7 +98,7 @@ export function FormDemo() {
               <Box marginBottom={3} />
 
               <FormGroup>
-                <CustomCheckbox name="acceptedTermsAndConditions" label="Accept terms and conditions" />
+                <CustomCheckboxFormik name="acceptedTermsAndConditions" label="Accept terms and conditions" />
               </FormGroup>
               <ErrorMessage name="acceptedTermsAndConditions">{msg => <Typography color="error">{msg}</Typography>}</ErrorMessage>
 

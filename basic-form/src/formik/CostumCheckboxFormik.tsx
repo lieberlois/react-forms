@@ -8,7 +8,7 @@ export interface CustumCheckboxProps extends CheckboxProps {
   label?: string;
 }
 
-export function CustomCheckbox(props: CustumCheckboxProps) {
+export function CustomCheckboxFormik(props: CustumCheckboxProps) {
   const { name, value, label } = props;
 
   const [field] = useField({
